@@ -1,0 +1,23 @@
+{% extends 'employees/base.html' %}
+{% block title %}Delete Employee – Employee Management System{% endblock %}
+
+{% block content %}
+<div class="confirm-wrapper">
+  <div class="confirm-card">
+
+    <div class="confirm-icon">!</div>
+
+    <h2>Are you sure?</h2>
+    <p>Do you really want to delete <strong>{{ employee.name }}</strong>?<br>This action cannot be undone.</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="confirm-actions">
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline">Cancel</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

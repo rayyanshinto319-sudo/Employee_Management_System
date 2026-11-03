@@ -1,0 +1,17 @@
+{% extends 'employees/base.html' %}
+{% block title %}Logged Out – Employee Management System{% endblock %}
+
+{% block content %}
+<div class="logout-wrapper">
+  <div class="logout-card">
+
+    <div class="logout-icon">✓</div>
+
+    <h2>You have been logged out!</h2>
+    <p>Thank you for using Employee Management System.</p>
+
+    <a href="{% url 'login' %}" class="btn btn-primary">Login Again</a>
+
+  </div>
+</div>
+{% endblock %}

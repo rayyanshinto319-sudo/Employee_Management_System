@@ -1,0 +1,62 @@
+{% extends 'employees/base.html' %}
+{% block title %}{{ employee.name }} – Employee Profile{% endblock %}
+
+{% block content %}
+<div class="page-content">
+
+  <div class="breadcrumb">
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <span>/</span>
+    Employee Profile
+  </div>
+
+  <div class="profile-card">
+
+    {% if employee.profile_image %}
+      <img src="{{ employee.profile_image.url }}" alt="{{ employee.name }}" class="profile-photo">
+    {% else %}
+      <div class="profile-photo-placeholder">{{ employee.name|first|upper }}</div>
+    {% endif %}
+
+    <div class="profile-info">
+      <h2>{{ employee.name }}</h2>
+
+      <table class="profile-table">
+        <tr>
+          <td>Age</td>
+          <td>: {{ employee.age }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>: {{ employee.email }}</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>: {{ employee.phone }}</td>
+        </tr>
+        <tr>
+          <td>Department</td>
+          <td>: {{ employee.department }}</td>
+        </tr>
+        <tr>
+          <td>Salary</td>
+          <td>: {{ employee.salary }}</td>
+        </tr>
+        {% if employee.address %}
+        <tr>
+          <td>Address</td>
+          <td>: {{ employee.address }}</td>
+        </tr>
+        {% endif %}
+      </table>
+
+      <div class="profile-actions">
+        <a href="{% url 'edit_employee' employee.pk %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline">Back to List</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

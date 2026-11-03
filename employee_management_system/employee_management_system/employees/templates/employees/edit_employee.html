@@ -1,0 +1,78 @@
+{% extends 'employees/base.html' %}
+{% block title %}Edit {{ employee.name }} – Employee Management System{% endblock %}
+
+{% block content %}
+<div class="page-content">
+
+  <div class="form-card">
+    <h2>Edit Employee</h2>
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label>Name</label>
+          {{ form.name }}
+          {% if form.name.errors %}<ul class="errorlist">{% for e in form.name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label>Department</label>
+          {{ form.department }}
+          {% if form.department.errors %}<ul class="errorlist">{% for e in form.department.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label>Age</label>
+          {{ form.age }}
+          {% if form.age.errors %}<ul class="errorlist">{% for e in form.age.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label>Salary</label>
+          {{ form.salary }}
+          {% if form.salary.errors %}<ul class="errorlist">{% for e in form.salary.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}<ul class="errorlist">{% for e in form.email.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          {{ form.phone }}
+          {% if form.phone.errors %}<ul class="errorlist">{% for e in form.phone.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group full">
+          <label>Address</label>
+          {{ form.address }}
+          {% if form.address.errors %}<ul class="errorlist">{% for e in form.address.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+
+        <div class="form-group full">
+          <label>Profile Image</label>
+          {% if employee.profile_image %}
+            <div style="margin-bottom:.5rem;">
+              <img src="{{ employee.profile_image.url }}" alt="{{ employee.name }}" style="height:60px;width:60px;object-fit:cover;border-radius:var(--radius);">
+            </div>
+          {% endif %}
+          <div class="file-input-wrapper">{{ form.profile_image }}</div>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-success">Update Employee</button>
+        <a href="{% url 'employee_detail' employee.pk %}" class="btn btn-outline">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+{% endblock %}
